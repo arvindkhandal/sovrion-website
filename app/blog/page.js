@@ -1,0 +1,1 @@
+export default function Blog(){ return (<section className='max-w-4xl mx-auto py-16 px-6'><h2 className='text-3xl font-bold text-blue-700 mb-4 text-center'>Blog</h2><p className='text-center text-gray-600'>Coming soon.</p></section>); }

@@ -1,0 +1,1 @@
+See .env.example and README instructions inside project.

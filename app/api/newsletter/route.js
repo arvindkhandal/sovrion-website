@@ -1,0 +1,1 @@
+import { NextResponse } from 'next/server'; export async function POST(req){ try{ const body=await req.json(); console.log('Newsletter signup:', body); return NextResponse.json({ok:true,message:'Subscribed'},{status:200}); }catch(err){ return NextResponse.json({ok:false,message:'Invalid'},{status:400}); } }

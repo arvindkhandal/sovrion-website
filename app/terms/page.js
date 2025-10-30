@@ -1,0 +1,1 @@
+export default function Terms(){ return (<section className='max-w-4xl mx-auto py-16 px-6'><h2 className='text-2xl font-bold'>Terms & Conditions</h2><p className='mt-4 text-gray-600'>Basic terms placeholder.</p></section>); }
