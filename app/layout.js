@@ -1,9 +1,3 @@
-"use client";
-
-import "./globals.css";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
 export const metadata = {
   title: "Sovrion",
   description: "Modern Web Solutions by Sovrion",
@@ -11,6 +5,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const [darkMode, setDarkMode] = useState(false);
+
+  import "./globals.css";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
