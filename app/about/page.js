@@ -9,5 +9,5 @@ export default function About() {
     </section>
   );
 }
-import ThemeToggle from "../components/ThemeToggle";
+import ThemeToggle from '../../components/ThemeToggle';
 
