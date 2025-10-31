@@ -1,1 +1,11 @@
-export default function About(){ return (<section className='max-w-4xl mx-auto py-16 px-6'><h2 className='text-3xl font-bold text-blue-700 mb-4'>About Us</h2><p className='text-gray-700 leading-relaxed'>Sovrion Technologies Pvt. Ltd. is founded by Arvind Khandal with a vision to blend technology and faith. Our mission is to craft reliable software with integrity and excellence.</p><div className='mt-8 p-6 bg-white rounded shadow'><h3 className='font-semibold'>Inspired by</h3><p className='text-sm text-gray-600 mt-2'>Inspired by Sawariya Seth Ji — Built with Faith and Integrity.</p></div></section>); }
+export default function About() {
+  return (
+    <section className="max-w-3xl mx-auto text-center py-16">
+      <h2 className="text-3xl font-semibold text-blue-600 mb-4">About Us</h2>
+      <p className="text-gray-700">
+        Sovrion is a modern tech company delivering web and AI-driven solutions.  
+        We specialize in web design, development, and digital transformation.
+      </p>
+    </section>
+  );
+}

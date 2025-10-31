@@ -1,1 +1,71 @@
-'use client'; import {useState} from 'react'; export default function Contact(){ const [status,setStatus]=useState(''); const handleSubmit=async(e)=>{ e.preventDefault(); setStatus('sending'); const form=new FormData(e.target); const data=Object.fromEntries(form.entries()); try{ const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); const j=await res.json(); if(res.ok){ setStatus('sent'); e.target.reset(); } else setStatus('error'); }catch(err){ setStatus('error'); } }; return (<section className='max-w-6xl mx-auto py-16 px-6'><h2 className='text-3xl font-bold text-blue-700 mb-4 text-center'>Contact Us</h2><div className='grid md:grid-cols-2 gap-6'><div><p className='text-gray-700'>Email: <a href='mailto:arvind.khandal@sovriontech.com' className='text-blue-600'>arvind.khandal@sovriontech.com</a></p><p className='text-gray-700'>HR: <a href='mailto:hr@sovriontech.com' className='text-blue-600'>hr@sovriontech.com</a></p><p className='text-gray-700'>Phone: <a href='tel:+919509716148' className='text-blue-600'>+91 95097 16148</a></p><div className='mt-6'><h4 className='font-semibold'>Our Location</h4><p className='text-sm text-gray-600'>Replace the map src with your exact office location if needed.</p><div className='mt-3 w-full h-64 bg-gray-200'><iframe className='w-full h-full' src='https://www.google.com/maps?q=India&output=embed' title='company-location'></iframe></div></div></div><div><form onSubmit={handleSubmit} className='bg-white p-6 rounded shadow'><label className='block text-sm'>Name</label><input name='name' required className='w-full border rounded px-3 py-2 mt-1' /><label className='block text-sm mt-3'>Email</label><input name='email' type='email' required className='w-full border rounded px-3 py-2 mt-1' /><label className='block text-sm mt-3'>Message</label><textarea name='message' required className='w-full border rounded px-3 py-2 mt-1' rows={4}></textarea><div className='mt-4'><button type='submit' className='bg-blue-700 text-white px-4 py-2 rounded'>{status==='sending' ? 'Sending...' : 'Send Message'}</button></div>{status==='sent' && <p className='text-green-600 mt-3'>Message sent. Thank you!</p>}{status==='error' && <p className='text-red-600 mt-3'>Error sending message. Try again later.</p>}</form></div></div></section>); }
+"use client";
+
+import { useState } from "react";
+
+export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/api/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    if (res.ok) setSubmitted(true);
+  };
+
+  return (
+    <section className="max-w-md mx-auto py-16">
+      <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">
+        Contact Us
+      </h2>
+
+      {submitted ? (
+        <p className="text-center text-green-600 font-medium">
+          ✅ Thank you! We’ll get back to you soon.
+        </p>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={form.name}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-lg px-3 py-2"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={form.email}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-lg px-3 py-2"
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            value={form.message}
+            onChange={handleChange}
+            required
+            className="w-full border border-gray-300 rounded-lg px-3 py-2"
+          />
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+          >
+            Send Message
+          </button>
+        </form>
+      )}
+    </section>
+  );
+}
